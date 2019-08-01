@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.security.PrivateKey;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Pedido implements Serializable {
@@ -26,6 +28,9 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "endereco_de_entrega_id")
     private Endereco enderecoDeEntrega;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido(){
     }
@@ -77,6 +82,14 @@ public class Pedido implements Serializable {
         this.enderecoDeEntrega = enderecoDeEntrega;
     }
 
+    public Set<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemPedido> itens) {
+        this.itens = itens;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,4 +104,5 @@ public class Pedido implements Serializable {
     public int hashCode() {
         return id.hashCode();
     }
+
 }
