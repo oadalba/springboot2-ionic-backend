@@ -1,8 +1,8 @@
 package com.adalba.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import java.awt.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class Estado implements Serializable {
 	private Integer id;
 	private String nome;
 
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "estado")
 	private java.util.List<Cidade> cidades = new ArrayList<>();
 	
