@@ -9,6 +9,7 @@ import com.adalba.cursomc.domain.Categoria;
 import com.adalba.cursomc.repositores.CategoriaRepository;
 import com.adalba.cursomc.services.exceptions.ObjectNotFoundException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,8 +42,11 @@ public class CategoriaService {
 		catch (DataIntegrityViolationException e){
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui Produtos");
 		}
-
-
 	}
+
+	public List<Categoria> findAll(){
+		return repo.findAll();
+	}
+
 
 }
